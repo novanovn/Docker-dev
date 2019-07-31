@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: php7.2
+    build: data-build
+    restart: always
+    container_name: docker_php7
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      web_network:
+        ipv4_address: 192.10.10.2
+networks:
+  web_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.10.10.0/29
