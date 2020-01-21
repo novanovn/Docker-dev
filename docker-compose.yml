@@ -8,7 +8,7 @@ services:
     volumes:
       - ./www:/var/www/html
     ports:
-      - "8080:80"
+      - "8989:80"
     networks:
       web_network:
         ipv4_address: 192.10.10.2
