@@ -7,7 +7,7 @@ if (!$conn) {
    exit;
 }
 else {
-   print "berhasil koneksi ke DB Oracle!";
+   print "Anda telah berhasil koneksi ke DB Oracle STORMDB!";
 }
 // Close the Oracle connection
 oci_close($conn);
