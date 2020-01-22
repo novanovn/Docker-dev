@@ -7,7 +7,7 @@ if (!$conn) {
    exit;
 }
 else {
-   print "Connected to Oracle!";
+   print "berhasil koneksi ke DB Oracle!";
 }
 // Close the Oracle connection
 oci_close($conn);
