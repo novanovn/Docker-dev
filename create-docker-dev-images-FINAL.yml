@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Docker build
+    command: docker build -t dockerdev-images-final:latest /opt/Docker-dev/data-build
+    args:
+      chdir: /opt/Docker-dev
+
+  - name: create tag to image
+    command: docker tag dockerdev-images-final novanovn/dockerdev-images-final
+
+  - name: push image on to dockerhub
+    command: docker push novanovn/dockerdev-images-final
+
+  - name: remove docker images from ansible server
+    command: docker rmi dockerdev-images-final:latest novanovn/dockerdev-images-final
+    ignore_errors: yes

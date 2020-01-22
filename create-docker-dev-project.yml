@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: stop current running container
+    command: docker stop docker_php7
+    ignore_errors: yes
+
+  - name: remove stopped container
+    command: docker rm docker_php7
+    ignore_errors: yes
+
+  - name: remove docker images
+    command: docker rmi novanovn/php7.2
+    ignore_errors: yes
+
+  - name: pull docker images from docker Hub
+    command: docker pull novanovn/php7.2:latest
+
+  - name: creating docker image using docker command
+    command: docker run -d --name docker-dev-container -p 8787:8080 novanovn/php7.2

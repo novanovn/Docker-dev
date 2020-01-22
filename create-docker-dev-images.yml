@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: create docker image using war file
+    command: docker-compose up --build -d
+    args:
+      chdir: /opt/Docker-dev
+
+  - name: create tag to image
+    command: docker tag php7.2 novanovn/php7.2
+
+  - name: push image on to dockerhub
+    command: docker push novanovn/php7.2
+
+  - name: remove docker images from ansible server
+    command: docker rmi php7.2:latest novanovn/php7.2 
+    ignore_errors: yes

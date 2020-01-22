@@ -4,6 +4,8 @@ MAINTAINER Marwan <marwan.ilcs.co.id>
 
 RUN apt-get update && apt-get install -y \
 unzip \
+nano \
+nmap \
 libfreetype6-dev \
 libjpeg62-turbo-dev \
 libmcrypt-dev \
@@ -11,7 +13,7 @@ libpng-dev \
 libaio1 
 
 COPY  docker-php.conf  /etc/apache2/conf-enabled/
-
+ADD www /var/www/html/
 COPY apache2.conf /etc/apache2/
 
 RUN printf "log_errors = On \nerror_log = /dev/stderr\n" > /usr/local/etc/php/conf.d/php-logs.ini

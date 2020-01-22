@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: stop current running container
+    command: docker stop docker-dev-container
+    ignore_errors: yes
+
+  - name: remove stopped container
+    command: docker rm docker-dev-container
+    ignore_errors: yes
+
+  - name: remove docker images
+    command: docker rmi novanovn/dockerdev-images-final
+    ignore_errors: yes
+
+  - name: pull docker images from docker Hub
+    command: docker pull novanovn/dockerdev-images-final:latest
+
+  - name: creating docker image using docker command
+    command: docker run -d --name docker-dev-container -p 8787:80 novanovn/dockerdev-images-final:latest
+
